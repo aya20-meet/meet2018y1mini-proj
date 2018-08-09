@@ -7,7 +7,42 @@ Name:
 Date:
 """
 import turtle
-import random 
+import random
+#color = input('Choose your color ')
+#turtle.bgcolor(color)
+'''milly = turtle.clone()
+milly.penup()
+milly.goto(0, 350)
+milly.pendown()
+milly.goto(350,350)
+milly.goto(-350,350)
+milly.goto(-350,-350)
+milly.goto(350,-350)
+milly.goto(350,350)
+
+milly.penup()
+milly.goto(-80, 400)
+milly.pendown()
+milly.write('SNAKE GAME!' ,font=('Ariel', 18, 'normal'))'''
+
+
+
+#turtle.register_shape('ted15game.gif')
+
+                      
+turtle.tracer(1,0) 
+
+SIZE_X=1000
+SIZE_Y=1000
+SIZE_Z=670
+SIZE_C=670
+turtle.setup(SIZE_X, SIZE_Y) 
+turtle.penup()
+
+SQUARE_SIZE = 20
+START_LENGTH = 10
+
+scorev = 0
 milly = turtle.clone()
 milly.penup()
 milly.goto(0, 350)
@@ -18,17 +53,20 @@ milly.goto(-350,-350)
 milly.goto(350,-350)
 milly.goto(350,350)
 
+milly.penup()
+milly.goto(-80, 400)
+milly.pendown()
+milly.write('SNAKE GAME!' ,font=('David', 18, 'normal'))
 
+def score(positionscore):
+    turtle.undo()
+    global scorev
+    turtle.goto(positionscore)
+    scorev += 1
+    turtle.hideturtle()
+    turtle.write(scorev, font=("Arial", 16, "normal"))
 
-turtle.tracer(1,0) 
-
-SIZE_X=800
-SIZE_Y=500
-turtle.setup(SIZE_X, SIZE_Y) 
-turtle.penup()
-
-SQUARE_SIZE = 20
-START_LENGTH = 10
+#turtle.bgcolor(color)
 
 
 pos_list = []
@@ -38,7 +76,8 @@ food_stamps = []
 
 
 snake = turtle.clone()
-snake.shape("square")
+#snake.shape("ted15game.gif")
+snake.shape('square')
 
 
 turtle.hideturtle()
@@ -117,10 +156,10 @@ turtle.onkeypress(right, RIGHT_ARROW)
 turtle.listen()
 
 def make_food():
-    min_x=-int(SIZE_X/2/SQUARE_SIZE)+1
-    max_x=int(SIZE_X/2/SQUARE_SIZE)-1
-    min_y=-int(SIZE_Y/2/SQUARE_SIZE)-1
-    max_y=int(SIZE_Y/2/SQUARE_SIZE)+1
+    min_x=-int(SIZE_Z/2/SQUARE_SIZE)+1
+    max_x=int(SIZE_Z/2/SQUARE_SIZE)-1
+    min_y=-int(SIZE_C/2/SQUARE_SIZE)-1
+    max_y=int(SIZE_C/2/SQUARE_SIZE)+1
     food_x = random.randint(min_x,max_x)*SQUARE_SIZE
     food_y = random.randint(min_y,max_y)*SQUARE_SIZE
     food_ran_pos = (food_x, food_y)
@@ -181,7 +220,8 @@ def move_snake():
    
     if snake.pos() in food_pos:
         food_ind=food_pos.index(snake.pos()) 
-        food.clearstamp(food_stamps[food_ind])                  
+        food.clearstamp(food_stamps[food_ind])
+        score((0, -400))
                                               
         food_pos.pop(food_ind) 
         food_stamps.pop(food_ind) 
@@ -195,8 +235,10 @@ def move_snake():
     
     turtle.ontimer(move_snake,TIME_STEP) 
     
+#turtle.register_shape('tedsnakegamefireball.gif')
 turtle.register_shape('trash.gif')
 food = turtle.clone()
+#food.shape('tedsnakegamefireball.gif')
 food.shape('trash.gif')
 food_pos = [(100,100), (-100,100), (-100,-100), (100,-100)]
 food_stamps = []
