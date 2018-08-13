@@ -27,7 +27,7 @@ milly.write('SNAKE GAME!' ,font=('Ariel', 18, 'normal'))'''
 
 
 
-#turtle.register_shape('ted15game.gif')
+#
 
                       
 turtle.tracer(1,0) 
@@ -65,6 +65,7 @@ def score(positionscore):
     scorev += 1
     turtle.hideturtle()
     turtle.write(scorev, font=("Arial", 16, "normal"))
+    
 
 #turtle.bgcolor(color)
 
@@ -73,14 +74,17 @@ pos_list = []
 stamp_list = []
 food_pos = []
 food_stamps = []
+turtle.hideturtle()
+
+turtle.register_shape('ted15game.gif')
 
 
 snake = turtle.clone()
-#snake.shape("ted15game.gif")
+#snake.shape('ted15game.gif')
 snake.shape('square')
 
 
-turtle.hideturtle()
+#turtle.hideturtle()
 
 
 for i  in range(START_LENGTH):
